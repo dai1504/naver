@@ -1,103 +1,145 @@
-import Image from "next/image";
+import { MusicCardLarge } from "@/components/music-card-large";
+import { MusicCardSmall } from "@/components/music-card-small";
+import { Sidebar } from "@/components/sidebar";
+import { Button } from "@/components/ui/button";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { CirclePlus } from "lucide-react";
 
-export default function Home() {
+const topPicks = [
+  {
+    title: "React Rendezvous",
+    author: "Ethan Byte",
+    image: "/images/1.jpg",
+  },
+  {
+    title: "Async Awakenings",
+    author: "Nina Netcode",
+    image: "/images/2.jpg",
+  },
+  {
+    title: "The Art of Reusability",
+    author: "Lena Logic",
+    image: "/images/3.jpg",
+  },
+  {
+    title: "Stateful Symphony",
+    author: "Beth Binary",
+    image: "/images/4.jpg",
+  },
+  {
+    title: "React Rendezvous",
+    author: "Ethan Byte",
+    image: "/images/1.jpg",
+  },
+];
+const madeForYou = [
+  {
+    title: "Thinking Components",
+    author: "Lena Logic",
+    image: "/images/5.jpg",
+  },
+  {
+    title: "Functional Fury",
+    author: "Beth Binary",
+    image: "/images/6.jpg",
+  },
+  {
+    title: "React Rendezvous",
+    author: "Ethan Byte",
+    image: "/images/7.jpg",
+  },
+  {
+    title: "Stateful Symphony",
+    author: "Beth Binary",
+    image: "/images/8.jpg",
+  },
+  {
+    title: "Async Awakenings",
+    author: "Nina Netcode",
+    image: "/images/9.jpg",
+  },
+  {
+    title: "The Art of Reusability",
+    author: "Lena Logic",
+    image: "/images/10.jpg",
+  },
+  {
+    title: "Thinking Components",
+    author: "Lena Logic",
+    image: "/images/5.jpg",
+  },
+];
+
+export default function Page() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    <div>
+      {/* 🔹 Top Header Bar */}
+      <div className="sticky top-0 z-30 bg-background border-b border-border flex items-center justify-between px-5 py-3">
+        <h1 className="text-xs font-bold tracking-wide">Music</h1>
+      </div>
+      <div className="flex min-h-screen overflow-hidden">
+        <Sidebar />
+        <main className="flex-1 p-8 overflow-x-hidden">
+          {/* Header */}
+          <div className="flex justify-between items-center mb-6">
+            <Tabs defaultValue="music">
+              <TabsList>
+                <TabsTrigger value="music">Music</TabsTrigger>
+                <TabsTrigger value="podcasts">Podcasts</TabsTrigger>
+                <TabsTrigger value="live" disabled>
+                  Live
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+            <Button className="flex items-center gap-2 bg-[#181818] text-white hover:bg-[#282828]">
+              <CirclePlus className="w-4 h-4" />
+              Add music
+            </Button>
+          </div>
+          {/* Listen Now */}
+          <h2 className="text-xl font-semibold mb-1">Listen Now</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Top picks for you. Updated daily.
+          </p>
+          {/* Divider line */}
+          <hr className="border-t border-gray-200 dark:border-neutral-800 my-5" />
+          <ScrollArea className="w-full whitespace-nowrap pb-6 mb-3">
+            <div className="flex gap-6">
+              {topPicks.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 w-[75%] sm:w-[45%] md:w-[30%] lg:w-[23%]"
+                >
+                  <MusicCardLarge {...item} />
+                </div>
+              ))}
+            </div>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+          {/* Made for You */}
+          <h2 className="text-xl font-semibold mb-1">Made for You</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            Your personal playlists. Updated daily.
+          </p>
+          {/* Divider line */}
+          <hr className="border-t border-gray-200 dark:border-neutral-800 my-5" />
+          <ScrollArea className="w-full whitespace-nowrap pb-4 mb-3">
+            <div className="flex gap-4">
+              {madeForYou.map((item, i) => (
+                <div
+                  key={i}
+                  className="flex-shrink-0 snap-start w-[80%] sm:w-[45%] md:w-[30%] lg:w-[20%] xl:w-[15%]"
+                >
+                  <MusicCardSmall {...item} />
+                </div>
+              ))}
+            </div>
+            {/* Thanh scroll bar nằm dưới */}
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        </main>
+      </div>
     </div>
   );
 }
