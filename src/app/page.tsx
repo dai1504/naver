@@ -3,8 +3,9 @@ import { MusicCardSmall } from "@/components/music-card-small";
 import { Sidebar } from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CirclePlus } from "lucide-react";
+import { CirclePlus, Menu } from "lucide-react";
 
 const topPicks = [
   {
@@ -77,12 +78,27 @@ export default function Page() {
       {/* 🔹 Top Header Bar */}
       <div className="sticky top-0 z-30 bg-background border-b border-border flex items-center justify-between px-5 py-3">
         <h1 className="text-xs font-bold tracking-wide">Music</h1>
+        <div className="md:hidden">
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon-sm">
+                <Menu className="h-3 w-3" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 p-5 pt-8">
+              <Sidebar />
+            </SheetContent>
+          </Sheet>
+        </div>
       </div>
-      <div className="flex min-h-screen overflow-hidden">
-        <Sidebar />
-        <main className="flex-1 p-8 overflow-x-hidden">
+      <div className="flex flex-col md:flex-row min-h-screen">
+        <aside className="hidden md:block w-64 border-r bg-background sticky top-[40px] h-[calc(100vh-40px)]">
+          <Sidebar />
+        </aside>
+        
+        <main className="flex-1 p-5 md:p-8 overflow-x-hidden">
           {/* Header */}
-          <div className="flex justify-between items-center mb-6">
+          <div className="flex flex-wrap gap-4 justify-between items-center mb-6">
             <Tabs defaultValue="music">
               <TabsList>
                 <TabsTrigger value="music">Music</TabsTrigger>
@@ -109,7 +125,7 @@ export default function Page() {
               {topPicks.map((item, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 w-[75%] sm:w-[45%] md:w-[30%] lg:w-[23%]"
+                  className="flex-shrink-0 min-w-[180px] max-w-[280px] w-[50%] sm:w-[45%] md:w-[30%] lg:w-[25%]"
                 >
                   <MusicCardLarge {...item} />
                 </div>
@@ -129,7 +145,7 @@ export default function Page() {
               {madeForYou.map((item, i) => (
                 <div
                   key={i}
-                  className="flex-shrink-0 snap-start w-[80%] sm:w-[45%] md:w-[30%] lg:w-[20%] xl:w-[15%]"
+                  className="flex-shrink-0 snap-start min-w-[90px] max-w-[160px] w-[50%] sm:w-[45%] md:w-[30%] lg:w-[25%]"
                 >
                   <MusicCardSmall {...item} />
                 </div>

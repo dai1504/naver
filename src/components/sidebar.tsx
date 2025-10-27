@@ -9,9 +9,10 @@ import {
   User,
   Disc,
   CirclePlay,
+  Menu,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import clsx from "clsx";
 
 const items = [
@@ -30,7 +31,17 @@ const library = [
 
 export function Sidebar() {
   return (
-    <div className="w-64 border-r bg-background p-5 pt-8 flex flex-col">
+    <>
+      <div className="md:flex md:w-64 md:border-r bg-background md:p-5 pt-8 flex-col">
+        <SidebarContent />
+      </div>
+    </>
+  );
+}
+
+function SidebarContent() {
+  return (
+    <>
       <h2 className="text-lg font-semibold mb-4">Discover</h2>
       <nav className="space-y-1 mb-6">
         {items.map((item) => (
@@ -58,6 +69,6 @@ export function Sidebar() {
           </Button>
         ))}
       </nav>
-    </div>
+    </>
   );
 }
